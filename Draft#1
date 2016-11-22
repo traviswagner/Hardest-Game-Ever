@@ -5,7 +5,7 @@
 <style>
 canvas {
 	border: 1px solid #A6bb9A;
-	background-color: #DDEEFF;
+	background-image: url("sv2.jpg");
 
 }
 </style>
@@ -20,7 +20,7 @@ var myScore;
 
 function startGame() {
 	//setting the variable for the start of the game
-	myGamePiece = new component(40, 40, "https://cdn.pixabay.com/photo/2016/04/01/10/33/animal-1299935_960_720.png", 10, 120, "image");
+	myGamePiece = new component(40, 40, "mario2.png", 10, 120, "image");
 	myScore = new component("30px", "Consolas", "black", 280, 40, "text");
 	myGameArea.start();
 }
@@ -118,8 +118,8 @@ function updateGameArea() {
 		minGap = 50;
 		maxGap = 200;
 		gap = Math.floor(Math.random() * (maxGap -minGap + 1) + minGap);
-		myObstacles.push(new component(10, height, "green", x, 0));
-		myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+		myObstacles.push(new component(20, height, "ud2.png", x, 0, "image"));
+		myObstacles.push(new component(20, x - height - gap, "ru.png", x, height + gap, "image"));
 	}
 
 	for(i = 0; i < myObstacles.length; i +=1) {
