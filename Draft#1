@@ -6,6 +6,7 @@
 canvas {
 	border: 1px solid #A6bb9A;
 	background-color: #DDEEFF;
+
 }
 </style>
 </head>
@@ -19,7 +20,7 @@ var myScore;
 
 function startGame() {
 	//setting the variable for the start of the game
-	myGamePiece = new component(30, 30, "red", 10, 120);
+	myGamePiece = new component(40, 40, "https://cdn.pixabay.com/photo/2016/04/01/10/33/animal-1299935_960_720.png", 10, 120, "image");
 	myScore = new component("30px", "Consolas", "black", 280, 40, "text");
 	myGameArea.start();
 }
@@ -44,6 +45,11 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
 	this.type = type;
+	if(type == "image")
+	{
+		this.image = new Image();
+		this.image.src = color;
+	}
 	this.width = width;
 	this.height = height;
 	this.speedX = 0;
@@ -57,7 +63,11 @@ function component(width, height, color, x, y, type) {
 			ctx.font = this.width + " " + this.height;
 			ctx.fillStyle = color;
 			ctx.fillText(this.text, this.x, this.y);
-		} else {
+		}
+		else if (type == "image") {
+			ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+		}
+		 else {
 			ctx.fillStyle = color;
 			ctx.fillRect(this.x, this.y, this.width, this.height);
 		}
@@ -98,7 +108,7 @@ function updateGameArea() {
 
 	myGameArea.clear();
 
-	myGameArea.frameNo += 1;
+	myGameArea.frameNo += 2;
 
 	if(myGameArea.frameNo == 1 || everyinterval(150)) {
 		x = myGameArea.canvas.width;
@@ -113,7 +123,7 @@ function updateGameArea() {
 	}
 
 	for(i = 0; i < myObstacles.length; i +=1) {
-		myObstacles[i].speedX = -1;
+		myObstacles[i].speedX = -3;
 		myObstacles[i].newPos();
 		myObstacles[i].update();
 	}
